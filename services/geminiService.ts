@@ -26,7 +26,7 @@ export const analyzeImage = async (file: File, context: 'model' | 'product'): Pr
         : "Analyze this product photo. Describe the clothing item's type, exact color, fabric texture, fit (e.g., oversized, slim), and any prints or details. This description will be used to perfectly replicate the item.";
     
     const response: GenerateContentResponse = await ai.models.generateContent({
-        model: 'gemini-2.5-flash',
+        model: 'gemini-2.5-pro',
         contents: { parts: [imagePart, { text: prompt }] },
     });
 
@@ -35,7 +35,7 @@ export const analyzeImage = async (file: File, context: 'model' | 'product'): Pr
 
 export const generateTaglines = async (productDescription: string): Promise<string[]> => {
     const response = await ai.models.generateContent({
-        model: 'gemini-2.5-flash',
+        model: 'gemini-2.5-pro',
         contents: `Based on this product description: "${productDescription}", generate 3-5 professional, catchy e-commerce taglines. Range from bold one-word statements to motivational phrases.`,
         config: {
             responseMimeType: "application/json",
